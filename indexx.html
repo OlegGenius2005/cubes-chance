@@ -1,0 +1,312 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js">
+    </script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js">
+    </script>
+</head>
+
+<body onload="brython()">
+    
+
+    
+
+    <div class="inner">
+
+         <div class ="item">Результат</div>
+
+        <button id="btn">Расчитать<br> шанс</button>
+
+      
+        <div id="input" class ="container"><input type="text" /></div>
+        
+        
+    </div>
+    
+   
+    <script type="text/python">
+
+        from browser import *
+        
+        def number(i):
+            if i < 7:
+                c = (6 - (7 - i))
+            if i > 7:
+                c = (6 - (i - 7))
+            if i == 7:
+                c = 6
+            if i == 0:
+                return 0
+            return (str((c / 36) * 100))[:6]
+        
+        def chance(cubes):
+            pip = cubes.split(' ')
+            list2 = list(map(int,pip))
+        
+            for y in range(0,len(list2)):
+                list2[y] = number(list2[y])
+
+            list3 = list(map(float,list2))
+        
+        
+        
+            prsnt = 0
+            for y in range(0, len(list3)):
+                prsnt += list3[y]
+            return str(prsnt)
+        
+        
+
+        items = document.select('.item')
+
+        
+
+        def change_text_0(event):
+                
+            nums = document.select('input')[0].value
+            items[0].text = chance(nums) + '%'
+            
+            document.select('input')[0].value = ''
+            
+
+            
+        document['btn'].bind('click',change_text_0)
+        
+
+
+
+
+
+
+
+
+
+        
+
+
+    
+        
+
+
+    </script>
+
+
+
+</body>
+
+</html>
+<style>
+    /* Указываем box sizing */
+    *,
+    *::before,
+    *::after {
+    box-sizing: border-box;
+    }
+
+    /* Убираем внутренние отступы */
+    ul[class],
+    ol[class] {
+    padding: 0;
+    }
+
+    /* Убираем внешние отступы */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul[class],
+    ol[class],
+    li,
+    figure,
+    figcaption,
+    blockquote,
+    dl,
+    dd {
+    margin: 0;
+    }
+
+    /* Выставляем основные настройки по-умолчанию для body */
+    body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    opacity: 1;
+    }
+
+    /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+    ul[class],
+    ol[class] {
+    list-style: none;
+    }
+
+    /* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+    a:not([class]) {
+    text-decoration-skip-ink: auto;
+    }
+
+    /* Упрощаем работу с изображениями */
+    img {
+    max-width: 100%;
+    display: block;
+    }
+
+    /* Указываем понятную периодичность в потоке данных у article*/
+    article > * + * {
+    margin-top: 1em;
+    }
+
+    /* Наследуем шрифты для инпутов и кнопок */
+    input,
+    button,
+    textarea,
+    select {
+    font: inherit;
+    }
+    body{
+        
+        text-align: center;
+        justify-content: center;
+        background-color: rgb(205, 41, 49);
+       
+     
+
+
+    }
+    .inner{
+        background-color: rgb(123, 35, 35);
+        width: 40%;
+        margin: auto ; 
+        position: relative;
+        border-radius: 15px;
+        top:30%;
+        
+       
+        padding: 3%;
+
+
+    }
+    .container{
+       
+        justify-content: center space-between;
+        text-align: center;
+        margin: 10px 0 40px;
+        width: 100%;
+        
+        
+    }
+    input{
+        width: 98%;
+        border-radius: 20px;
+        border: 0;
+        padding: 1% 0 20% 0;
+        text-align: center;
+    }
+    input:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #bdbdbd;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+        }
+    input::placeholder {
+        color: #212529;
+        opacity: 0.4;
+    }    
+    .item{
+        padding:20px; 
+        
+        text-align: center;
+        background-color: aliceblue;
+
+        
+    }
+
+    button{
+        padding:10px 20px;
+        border-radius: 20px;
+        border: 0;
+        margin: 1%;
+        box-shadow: 0 3px 6px 0 black;
+        transition: all 0.5s;
+        color: aliceblue;
+        background-color: rgba(5, 3, 3, 0.379);
+       
+    }
+    button:hover{
+        box-shadow: 0 6px 10px 0 black;
+        background-color: rgba(5, 3, 3, 0.815);
+
+    }
+    .h1{
+        background-color:rgba(255, 255, 255, 0.767); 
+        width: 50%;
+        margin:0 25% 0 25%;
+        border-radius: 30px;
+        position: absolute;
+        margin-top: 5%;
+        
+       
+    }
+    h1{
+        color: rgb(241, 103, 135);
+        font-size: 5em;
+        
+        
+      
+    }
+    @media only screen and (max-width:480px), only screen and (max-device-width: 480px) {
+        body{
+            background-color: rgb(205, 41, 49);
+            font-size: 1.5em;
+           
+
+        }
+        .inner{
+            width: 700px;
+            height: 600px;
+            margin-top: -10%;
+            background-color: rgb(123, 35, 35);
+           
+        }
+        button{
+            padding:15px 25px;
+            margin: 7% 4% ;
+          
+        
+        }
+        .item{
+            padding:20px; 
+            height: 20%;
+          
+
+        
+        }
+        .h1{
+            width: 50%;
+            margin: auto;
+            margin-top: 40%;
+            width: 700px;
+            position: relative;
+        }
+        h1{
+            color: rgb(41, 205, 205);
+            font-size: 5em;
+            top: 1%;
+            
+      
+        }
+        
+    }
+
+</style>
+
